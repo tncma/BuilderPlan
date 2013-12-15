@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+    <constant name="struts.devMode" value="true" />
+ 	<constant name="struts.custom.i18n.resources" value="global" />
+
+	<package name="user"  extends="struts-default">
+	    
+		<action name="Login">
+			<result>User/pages/admin_login.jsp</result>
+		</action>
+		<action name="Welcome" class="com.mkyong.user.action.WelcomeUserAction">
+			<result name="SUCCESS">User/pages/prob_registration.jsp</result>
+		</action>
+		
+		<action name="registerProblem" class="com.mkyong.user.action.RegisterProblemAction">
+			<result name="SUCCESS">User/pages/prob_registration2.jsp</result>
+		</action>
+		
+		<action name="loginCheck" class="com.mkyong.user.action.LoginCheckAction" method="check">
+			<result name="SUCCESS" type="chain">Not_display</result>
+			<result name="ERROR">User/pages/invalid.jsp</result>
+		</action>
+		
+		<action name="Not_display" class="com.mkyong.user.action.LoginCheckAction" method="display">
+			<result name="SUCCESS">User/pages/admin_notification.jsp</result>
+		</action>
+		
+		<action name="registerComplaint" class="com.mkyong.user.action.RegisterProblemAction" method="reg_complaint">
+			<result name="SUCCESS">User/pages/login.jsp</result>
+		</action>
+	</package>
+	
+</struts>
